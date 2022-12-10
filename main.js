@@ -3,19 +3,29 @@ function Add(numbers = "") {
     let self = numbers.split(',')
     if (self.length == 0) return 0;
     if (self.length > 2) {
-        return new Error("Exceeded Numbers")
+        throw new Error("Exceeded Numbers")
     }
     let sum = 0;
 
-
+    let negStack = []
+    
     for (item of self) {
         if (isNaN(item) === true) {
-            return new Error("Wrong Numbers")
+            throw new Error("Wrong Numbers")
         } else {
+            if (Number(item) < 0 )
+            {
+                negStack.push(Number(item))
+            }
             sum += Number(item);
         }
     }
+    if (negStack.length > 0){
+        
+        //negStack.forEach((neg) => console.log(neg))
+        throw new Error("Negatives Not Allowed " +  negStack.toString())
+    }
     return sum;
 }
-console.log(Add("1,sdf"))
+
 module.exports = Add;
