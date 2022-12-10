@@ -1,7 +1,6 @@
 function Add(numbers = "") {
     if (numbers.trim() == "") return 0;
-    let self = numbers.split(',')
-    if (self.length == 0) return 0;
+    let self = numbers.trim().split(',')
     if (self.length > 2) {
         throw new Error("Exceeded Numbers")
     }
@@ -17,6 +16,7 @@ function Add(numbers = "") {
             {
                 negStack.push(Number(item))
             }
+            if (Number(item)<=1000)
             sum += Number(item);
         }
     }

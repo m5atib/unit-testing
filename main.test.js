@@ -6,6 +6,9 @@ test("addition of none given arguments" , () => {
 test("addition of empty equal zero" , () => {
     expect(Add("")).toBe(0)
 });
+test("addition of empty equal zero" , () => {
+    expect(Add(", ")).toBe(0)
+});
 
 test("addition of 77 equal 77" , () => {
     expect(Add("77")).toBe(77)
@@ -19,9 +22,15 @@ test("Addition of more than 2 items in the given string" , () => {
 })
 
 test("Addition of strings contains incorrect numbers" , () => {
-    expect(()=>Add("1,sdf")).toThrow('Wrong Numbers')
+    expect(()=>Add(", ,")).toThrow('Exceeded Numbers')
 })
-
+test("Addition of strings contains empty numbers" , () => {
+    expect(()=>Add("1,dsf")).toThrow('Wrong Numbers')
+})
 test("if there is negative numbers" , ()=> {
     expect(()=>Add("1,-1")).toThrow('Negatives Not Allowed')
 })
+test("if there is  number larger than 1000" , ()=> {
+    expect(Add("187,1005")).toBe(187)
+})
+
