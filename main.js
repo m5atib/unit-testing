@@ -1,16 +1,21 @@
 function Add(numbers = "") {
-
+    if (numbers.trim() == "") return 0;
     let self = numbers.split(',')
+    if (self.length == 0) return 0;
     if (self.length > 2) {
-        console.log("the number of items should not be exceeed 2 items")
-        return;
+        return new Error("Exceeded Numbers")
     }
-    const re = /[a-zA-Z]/;
-    const mat = re.exec(numbers)
+    let sum = 0;
 
-    if (mat)
-    {
-        console.log("Your input must contain 0,1 or 2 numbers only separated by comma(,) like that 1,25,6 !")
-        return 
+
+    for (item of self) {
+        if (isNaN(item) === true) {
+            return new Error("Wrong Numbers")
+        } else {
+            sum += Number(item);
+        }
     }
+    return sum;
 }
+console.log(Add("1,sdf"))
+module.exports = Add;
